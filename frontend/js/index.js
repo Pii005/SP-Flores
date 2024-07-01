@@ -297,7 +297,7 @@ function escuchandoFiltrador() {
   const canceladorBtn = document.getElementById("cancelador");
 
   filtradorBtn.addEventListener("click", function(event) {
-    event.preventDefault(); // Evitar envío del formulario por defecto
+    event.preventDefault(); 
 
     const filtroSeleccionado = document.getElementById("filtro-text").value;
     const promedioIngresado = parseFloat(document.getElementById("promedio-text").value); // Convertir a número flotante
@@ -313,11 +313,8 @@ function escuchandoFiltrador() {
     const promedio = sumModel / elementosFiltrados.length;
 
     console.log("Promedio de precios:", promedio);
-
-    // Ordenar la tabla en función del promedio
     elementosFiltrados.sort((a, b) => parseFloat(a.precio) - parseFloat(b.precio));
-
-    // Actualizar la tabla con los elementos ordenados
+    
     rellenarTabla(elementosFiltrados);
   });
 
@@ -343,16 +340,16 @@ function imprimirSeleccionados() {
   const btn = document.getElementById("filtrar-Tabla");
 
   btn.addEventListener("click", async (e) => {
-    // Obtener todos los checkboxes
+  
     let checkboxes = document.querySelectorAll('input[type="checkbox"]');
     
-    // Variables para almacenar los campos seleccionados
+   
     let camposSeleccionados = [];
 
     // Iterar sobre cada checkbox y verificar si está seleccionado
     checkboxes.forEach(function(checkbox) {
       if (checkbox.checked) {
-        camposSeleccionados.push(checkbox.value); // Agregar el valor del checkbox seleccionado al array
+        camposSeleccionados.push(checkbox.value);
       }
     });
 
@@ -363,7 +360,6 @@ function imprimirSeleccionados() {
 }
 
 function mostrarColumnasSeleccionadas(camposSeleccionados) {
-  // Obtener la tabla y su cabecera
   let table = document.getElementById("table-items");
   let header = table.querySelector("thead");
 
@@ -382,7 +378,7 @@ function mostrarColumnasSeleccionadas(camposSeleccionados) {
       if (!camposSeleccionados.includes(headerText)) {
         cell.style.display = "none";
       } else {
-        cell.style.display = ""; // Mostrar celda si está en los campos seleccionados
+        cell.style.display = ""; 
       }
     });
   });
