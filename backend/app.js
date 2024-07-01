@@ -6,11 +6,12 @@ const port = 3000;
 app.use(cors()); // Habilita CORS para todas las rutas
 app.use(express.json());
 
-// let casas = [
-//     { id: 1, titulo: 'Casa Blanca', transaccion: 'venta',precio: 250000, tipo: 'departamento'},
-//     { id: 2, titulo: 'Casa Roja', transaccion: 'alquiler',precio: 120000, tipo: 'departamento' },
-//     { id: 3, titulo: 'Casa Gris', transaccion: 'venta',precio: 150000, tipo: 'departamento' }
-// ];
+let casas = [
+    new Planeta(1, "Tierra", "Pequeño", "5.972 × 10^24 kg", "Roca", "1 UA", "Sí", "No", "Roca y metal"),
+    new Planeta(2, "Júpiter", "Enorme", "1.898 × 10^27 kg", "Gaseoso", "5.2 UA", "No", "Sí", "Gas y líquido metálico"),
+    new Planeta(3, "Marte", "Pequeño", "6.39 × 10^23 kg", "Roca", "1.5 UA", "Sí", "No", "Roca y metal")
+
+];
 
 // Middleware para simular una demora de 3 segundos
 const simulateDelay = (req, res, next) => {
