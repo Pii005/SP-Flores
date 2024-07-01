@@ -1,9 +1,11 @@
 import { Casa } from "./casa.js";
+import { Planeta } from "./Planeta.js";
 import { obtenerTodos, crearuno, deleteOne, deleteAll, editOne } from "./api.js";
 import { mostrarSpinner, ocultarSpinner } from "./spinner.js";
 import { mostrarBotones, ocultarBotones } from "./botones.js";
 
-const KEY_STORAGE = "casas";
+
+const KEY_STORAGE = "Planeta";
 let items = []; // array vacío
 const formulario = document.getElementById("form-item");
 let selectedItemIndex = null; // para mantener el índice del elemento seleccionado
@@ -27,7 +29,9 @@ async function loadItems() {
   try {
     let objetos = await obtenerTodos();
     objetos = objetos || [];
-    items = objetos.map(obj => new Casa(obj.id, obj.titulo, obj.transaccion, obj.precio, obj.tipo));
+    items = objetos.map(obj => new Planeta(obj.id, obj.nombre, obj.tamaño, obj.masa, obj.tipo, 
+      obj.distancia, obj.presentaVida, obj.anillo, obj.composicion));
+
     rellenarTabla(items);
   } catch (error) {
     alert("Error al cargar los elementos: " + error);
@@ -43,7 +47,8 @@ function rellenarTabla(items) { // Con los items pasados carga la tabla
 
   tbody.innerHTML = ''; // Me aseguro que esté vacío, hago referencia al agregar otro
 
-  const celdas = ["id", "titulo", "transaccion", "precio", "tipo"];
+  const celdas = ["id", "nombre", "tamaño", "masa", "tipo", "distancia", 
+    "presentaVida", "anillo", "composicion"];
   
   items.forEach((item, index) => {
     let nuevaFila = document.createElement("tr");
@@ -69,18 +74,22 @@ function escuchandoFormulario() {
 
     var fechaActual = new Date();
 
-    const model = new Casa(
+    const model = new Planeta(
       fechaActual.getTime(),
-      formulario.querySelector("#titulo").value,
-      getSelectedRadioValue(), // Obtener valor de radio
-      formulario.querySelector("#precio").value,
-      getselect() // Obtener valor de select
+      formulario.querySelector("#Nombre").value,
+      formulario.querySelector("#Tamaño").value,
+      formulario.querySelector("#Masa").value,
+      getselect(), // Obtener valor de select
+      formulario.querySelector("#Distancia").value,
+      obtenerValorRadio('pvida'),
+      obtenerValorRadio('panillo'), // Obtener valor de radio
+      formulario.querySelector("#composicion").value,
     );
 
     console.log(model);
-    const respuesta = model.verify();
+    const respuesta = true;
 
-    if (respuesta.success) {
+    if (respuesta) {
       try {
         mostrarSpinner();
         await crearuno(model);
@@ -93,26 +102,23 @@ function escuchandoFormulario() {
     } else {
       alert(respuesta.rta);
     }
-  });
+    });
 }
 
-function getSelectedRadioValue() {// Obtener todos los elementos radio con el name "transaccion"
-  const radios = document.getElementsByName('transaccion'); 
 
-  // Iterar sobre los radios para encontrar el seleccionado
-  for (let i = 0; i < radios.length; i++) {
-    if (radios[i].checked) {
-      const selectedValue = radios[i].value; // Obtener el valor del radio seleccionado
-      console.log("transaccion: " + selectedValue);
-      return selectedValue;
-    }
+function obtenerValorRadio(id) {
+  const radios = document.getElementsByName(id);
+  let seleccionado = "No";
+
+  for (const radio of radios) {
+      if (radio.checked) {
+          seleccionado = radio.value;
+          break;
+      }
   }
 
-  // Si ningún radio está seleccionado
-  alert('No option selected');
-  return null;
+  return seleccionado; // <- Devuelve el valor seleccionado
 }
-
 
 function getselect()// OPCIONES **********
 {
@@ -125,49 +131,50 @@ function getselect()// OPCIONES **********
 
 /* ELIMAR ITEM SELECCIONADO */
 async function eliminarItem() {
+  // console.log("Borrar uno")
   if (selectedItemIndex === null) return;
 
   const item = items[selectedItemIndex]; // Obtener el item a eliminar
   items.splice(selectedItemIndex, 1); // Eliminar del array local
 
-  if (confirm('¿Desea eliminar el Item?')) {
+  
+  mostrarSpinner();
     try {
-      mostrarSpinner();
+      console.log("Borrar uno")
       await deleteOne(item.id); // Eliminar del servidor
       loadItems(); // Volver a cargar los items y actualizar la tabla
       selectedItemIndex = null; // Resetear el índice seleccionado
       actualizarFormulario();
     } catch (error) {
+      console.log(error);
       alert(error);
     } finally {
       ocultarSpinner();
     }
-  }
+  
 }
 
 /* RELLENAR FORMULARIO */
-function editarElemento(data, index) {
-  selectedItemIndex = index; // Guardar el índice del item seleccionado
-  const tituloInput = formulario.querySelector("#titulo");
-  const transaccionRadio = formulario.querySelector(`input[name="transaccion"][value="${data[2]}"]`);
-  const precioInput = formulario.querySelector("#precio");
-  const tipoSelect = formulario.querySelector("#tipo");
+function editarElemento(planeta) {
+  formulario.querySelector("#Nombre").value = planeta[1];
+  formulario.querySelector("#Tamaño").value = planeta[2];
+  formulario.querySelector("#Masa").value = planeta[3];
+  formulario.querySelector("#tipo").value = planeta[4];
+  formulario.querySelector("#Distancia").value = planeta[5];
 
-  if (tituloInput) {
-    tituloInput.value = data[1];
-  }
-  if (transaccionRadio) {
-    transaccionRadio.checked = true; // Marcar el radio seleccionado
-  }
-  if (precioInput) {
-    precioInput.value = data[3];
-  }
-  if (tipoSelect) {
-    tipoSelect.value = data[4];
-  }
-  
+  if (planeta[6] === "Sí") {
+    formulario.querySelector("#pVida[value='Sí']").checked = true;
+  } 
+
+  if (planeta[7] === "Sí") {
+    formulario.querySelector("#pAnillo[value='Sí']").checked = true;
+  } 
+
+  formulario.querySelector("#composicion").value = planeta[8];
+
   mostrarBotones(); // Mostrar botones al editar
 }
+
 
 
 function actualizarFormulario() {
@@ -176,14 +183,15 @@ function actualizarFormulario() {
 }
 
 /* EDITAR AL SELECCIONAR LA FILA */
-function addRowClickListener(row, index) { // Se encarga de poner la característica de click y manda los datos a consola
+function addRowClickListener(row, index) {
   row.addEventListener('click', () => {
     const cells = row.querySelectorAll('td');
     const rowData = Array.from(cells).map(cell => cell.textContent);
     console.log(rowData);
-    editarElemento(rowData, index);
+    editarElemento(rowData); 
   });
 }
+
 
 /* VOLVER DE EDITAR */
 function escuchandoBtnBack() {
@@ -208,6 +216,7 @@ function escuchandoBtnBack() {
 
 /*  ELIMINAR TODO */
 function escuchandoBtnDeleteOne() {
+  
   const btn = document.getElementById("btn-delete-one");
 
   btn.addEventListener('click', eliminarItem);
@@ -246,21 +255,24 @@ async function editarItem() {
 
   const item = items[selectedItemIndex]; // Obtener el item a editar
 
-  const model = new Casa( //MODIFICAR ACA
-    item.id,
-    formulario.querySelector("#titulo").value,
-    getSelectedRadioValue(),
-    formulario.querySelector("#precio").value,
-    getselect()
+  const model = new Planeta(
+    fechaActual.getTime(),
+    formulario.querySelector("#Nombre").value,
+    formulario.querySelector("#Tamaño").value,
+    formulario.querySelector("#Masa").value,
+    getselect(), // Obtener valor de select
+    formulario.querySelector("#Distancia").value,
+    obtenerValorRadio('pvida'),
+    obtenerValorRadio('panillo'), // Obtener valor de radio
+    formulario.querySelector("#composicion").value,
   );
-  // getSelectedRadioValue() = data[2];
-  // formulario.querySelector("#precio").value = data[3];
-  // getselect().value = data[4];
-  const respuesta = model.verify();
+  
+  const respuesta = true;
 
-  if (respuesta.success) {
+  
+    mostrarSpinner();
+    console.log("EDITANDO");
     try {
-      mostrarSpinner();
       await editOne(model); // Editar en el servidor
       await loadItems(); // Volver a cargar los items y actualizar la tabla
       selectedItemIndex = null; // Resetear el índice seleccionado
@@ -268,12 +280,13 @@ async function editarItem() {
       actualizarFormulario()
     } catch (error) {
       alert(error);
+      console.log(error);
     } finally {
       ocultarSpinner();
     }
-  } else {
-    alert(respuesta.rta);
-  }
+  // } else {
+  //   alert(respuesta.rta);
+  // }
 }
 
 

@@ -6,11 +6,11 @@ const port = 3000;
 app.use(cors()); // Habilita CORS para todas las rutas
 app.use(express.json());
 
-let casas = [
-    { id: 1, titulo: 'Casa Blanca', transaccion: 'venta',precio: 250000, tipo: 'departamento'},
-    { id: 2, titulo: 'Casa Roja', transaccion: 'alquiler',precio: 120000, tipo: 'departamento' },
-    { id: 3, titulo: 'Casa Gris', transaccion: 'venta',precio: 150000, tipo: 'departamento' }
-];
+// let casas = [
+//     { id: 1, titulo: 'Casa Blanca', transaccion: 'venta',precio: 250000, tipo: 'departamento'},
+//     { id: 2, titulo: 'Casa Roja', transaccion: 'alquiler',precio: 120000, tipo: 'departamento' },
+//     { id: 3, titulo: 'Casa Gris', transaccion: 'venta',precio: 150000, tipo: 'departamento' }
+// ];
 
 // Middleware para simular una demora de 3 segundos
 const simulateDelay = (req, res, next) => {

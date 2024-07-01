@@ -22,7 +22,7 @@
   <body>
     <header class="flex">
       <div class="navegacion flex">
-        <img src="./assets/images/logo.svg" alt="Logo Principal" />
+        <img src="./assets/logo.svg" alt="Logo Principal" />
 
         <nav>
           <ul class="flex">
@@ -37,92 +37,47 @@
       <h1>Simulador Primer Parcial</h1>
     </header>
 
-    <!-- <div class="container-sections">
-      <section>
-        <form action="" method="post" id="form-item">
-          <input type="number" name="id" id="id" hidden />
-
-          <div class="form-group">
-            <label for="titulo">Titulo</label>
-
-            <input
-              type="text"
-              required
-              name="titulo"
-              id="titulo"
-              placeholder="Ingrese Titulo.."
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="precio">Precio</label>
-
-            <input
-              type="number"
-              required
-              name="precio"
-              id="precio"
-              placeholder="Ingrese Precio.."
-            />
-          </div>
-
-          <div class="form-group">
-            <button type="submit" id="guardado" class="btn btn-primary">Guardar</button>
-          </div>
-          <div class="d-grid gap-2 d-md-block">
-            <button type="button" class="btn btn-success " id="btn-edit">Editar</button>
-            <button type="button" class="btn btn-outline-danger" id="btn-delete-one">Eliminar</button>
-            <button type="button" class="btn btn-warning " id="btn-back">volver</button>
-        </div>
-      </form> -->
-      
+  
     <div class="container my-3">
       <div class="row">
           <div class="col-sm-12 col-md-8 col-lg-8 bg-white"> 
               <form method="post" id="form-item">
                   <div class="mb-3">
-                          <legend>Información de la casa</legend>
-                          <input type="number" name="id" id="id" hidden />
-                          <h3>titulo</h3>
-                          <input type="text"  class="form-control" required name="titulo" placeholder="Ingrese titulo" id="titulo">
-      
-                            <h3>Transaccion</h3>
-                            <div>
-                              <div class="form-check">
-                                  <input class="form-check-input" type="radio" name="transaccion" id="pVenta" value="venta" required>
-                                  <label class="form-check-label" for="pVenta">Venta</label>
-                              </div>
-                              <div class="form-check">
-                                  <input class="form-check-input" type="radio" name="transaccion" id="palquiler" value="alquiler" required>
-                                  <label class="form-check-label" for="palquiler">Alquiler</label>
-                              </div>
+                          <legend>Información del planeta</legend>
+                          <h3>Nombre</h3>
+                          <input type="text"  class="form-control" required name="Nombre" placeholder="Ingrese Nombre" id="Nombre">
+
+                          <h3>Tamaño</h3>
+                          <input type="text"  class="form-control" required name="Tamaño" placeholder="Ingrese Tamaño" id="Tamaño">
+
+                          <h3>Masa</h3>
+                          <input type="number"  class="form-control" required name="Masa" placeholder="Ingrese Masa" id="Masa">
+                          
+                          <div class="info-descripcion">
+                            <h3>Tipo</h3>
+                            <select required class="form-select" name="tipo" id="tipo">
+                              <option value="rocoso">Rocoso</option>
+                              <option value="gaseoso">Gaseoso</option>
+                              <option value="helado">Helado</option>
+                              <option value="enano">Enano</option>
+                          </select>
                             </div>
 
-                              <div class="info-descripcion">
-                                  <h3>Precio</h3>
-                                  <input type="number"  class="form-control" required name="precio" placeholder="ingrese el precio" id="precio">
-                              </div>
-      
-                              <div class="info-descripcion">
-                              <h3>tipo de casa</h3>
-                              <select required class="form-select" name="tipo" id="tipo">
-                                <option value="departamento">Departamento</option>
-                                <option value="terreno">Terreno</option>
-                            </select>
-                              </div>
-      
-                          <!-- <div class="info-descripcion">
-                              <h3>Masa</h3>
-                              <input type="text" required name="masa" placeholder="Masa" id="masa">
-                          </div>
-                          <div class="info-descripcion">
-                              <h3>Distancia al Sol</h3>
-                              <input type="text" required name="distancia" placeholder="Distancia al Sol" id="distancia">
-                          </div> 
-                          <div class="info-descripcion text-grande">
-                              <h3>composicion</h3>
-                              <input type="text" required name="composicion" placeholder="Ingrese composicion" id="composicion" maxlength="100">
-                          </div>-->
+                            <h3>Distancia al sol</h3>
+                          <input type="number"  class="form-control" required name="Distancia" placeholder="Ingrese Distancia" id="Distancia">
+                          
+                          
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="vida" id="pvida" value="Sí">
+                                <label class="form-check-label" for="pvida">Presenta vida</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="transaccion" id="panillo" value="Sí">
+                                <label class="form-check-label" for="panillo">Presenta anillo</label>
+                            </div>
+                          
+                          <h3>composicion</h3>
+                          <input type="text"  class="form-control" required name="composicion" placeholder="Ingrese composicion" id="composicion">
                           <br /><br />
                           <button type="submit" id="guardado" class="btn btn-primary">Guardar</button>
 
@@ -141,15 +96,17 @@
           </div>
 
   
-          <div class="col-sm-12 col-md-4 col-lg-4 bg-white bg-white">
+          <div class="col-sm-12 col-md-4 col-lg-4 bg-white">
               <form id="filtro-form">
                   <fieldset>
                       <div class="mb-3">
-                        <legend> <label for="filtro-text" class="form-label">Filtrar transacción</label> </legend>
+                        <legend> <label for="filtro-text" class="form-label">Filtrar planetas</label> </legend>
                           <select required id="filtro-text" class="form-select" aria-label="Default select example">
                           <option selected disabled>Seleccione un tipo</option>
-                          <option value="venta">venta</option>
-                          <option value="alquiler">alquiler</option>
+                          <option value="rocoso">Rocoso</option>
+                              <option value="gaseoso">Gaseoso</option>
+                              <option value="helado">Helado</option>
+                              <option value="enano">Enano</option>
                           </select>
                       </div>
                       <div class="mb-3">
@@ -163,24 +120,40 @@
               <div>
                 <legend><label for="filtro-text" class="form-label">Filtrar tabla</label> </legend>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" name="filtertitulo" id="filtertitulo" value="titulo" required>
-                  <label class="form-check-label" for="filtertitulo">titulo</label>
+                  <input class="form-check-input" type="checkbox" name="filterNombre" id="filterNombre" value="nombre" required>
+                  <label class="form-check-label" for="filterNombre">Nombre</label>
                 </div>
 
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" name="filtertransaccion" id="filtertransaccion" value="transaccion" required>
-                  <label class="form-check-label" for="filtertransaccion">transaccion</label>
+                  <input class="form-check-input" type="checkbox" name="filtertamaño" id="filtertamaño" value="tamaño" required>
+                  <label class="form-check-label" for="filtertamaño">tamaño</label>
                 </div>
 
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" name="filterprecio" id="filterprecio" value="precio" required>
-                  <label class="form-check-label" for="filterprecio">Precio</label>
+                  <input class="form-check-input" type="checkbox" name="filterMasa" id="filterMasa" value="masa" required>
+                  <label class="form-check-label" for="filterMasa">Masa</label>
                 </div>
 
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" name="filterTipo" id="filterTipo" value="tipo" required>
                   <label class="form-check-label" for="filterTipo">tipo</label>
                 </div>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="filterdistancia" id="filterdistancia" value="distancia" required>
+                  <label class="form-check-label" for="filterdistancia">distancia al sol</label>
+                </div>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="filteranillo" id="filteranillo" value="anillo" required>
+                  <label class="form-check-label" for="filteranillo">Anillo</label>
+                </div>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="filtercomposicion" id="filtercomposicion" value="composicion" required>
+                  <label class="form-check-label" for="filtercomposicion">composicion</label>
+                </div>
+
                 <button  class="btn btn-primary" id="filtrar-Tabla">Aceptar</button>
                 <button id="cancelador" type="submit" class="btn btn-primary">Cancelar</button>
               </div>
@@ -217,11 +190,15 @@
               <table id="table-items" class="table table-dark table-striped">
                   <thead>
                       <tr class="table-primary">
-                          <th>ID</th>
-                          <th>Titulo</th>
-                          <th>transaccion</th>
-                          <th>Precio</th>
-                          <th>tipo</th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Tamaño</th>
+                        <th>Masa</th>
+                        <th>Tipo</th>
+                        <th>Distancia al Sol</th>
+                        <th>Presenta Vida</th>
+                        <th>Presenta Anillo</th>
+                        <th>Composición</th>
                       </tr>
                   </thead>
                   <tbody class="table-light"></tbody>
