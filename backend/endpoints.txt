@@ -1,0 +1,17 @@
+Obtener todos
+method: GET, path '/casas'
+
+Obtener uno
+method: GET, path '/casas/ID'
+
+Crear uno
+method: POST, path '/casas'
+
+Actualizar uno
+method: PUT, path '/casas/ID'
+
+Eliminar uno
+method: DELETE, path '/casas/ID'
+
+Eliminar todos
+method: DELETE, path '/casas'

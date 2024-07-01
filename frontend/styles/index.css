@@ -1,0 +1,133 @@
+@font-face {
+	font-family: poppins;
+	src: url(../assets/fonts/Poppins-Black.ttf);
+}
+
+body
+{
+  background: #3E5151;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #DECBA4, #3E5151);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #DECBA4, #3E5151); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+header {
+  padding: 20px 20px;
+
+  background-image: url(../assets/images/header.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 100vh;
+
+  font-family: poppins, sans-serif;
+}
+
+.navegacion {
+  padding-top: 10px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+header nav ul,
+footer nav ul {
+  text-decoration: none;
+  list-style-type: none;
+
+  flex-direction: row;
+  justify-content: right;
+
+  gap: 1rem;
+}
+
+header nav ul li a,
+footer nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+header h1 {
+  color: white;
+  width: 700px;
+  font-size: 50px;
+}
+
+.btn {
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+
+/* footer {
+  width: 100%;
+  padding: 4rem 1rem;
+
+  align-items: center;
+  justify-content: space-between;
+  
+  color: white;
+  background: black;
+  font-family: poppins, sans-serif;
+} */
+
+
+
+
+.container-sections {
+  width: 100%;
+
+  gap: 3rem;
+}
+
+.container-sections section {
+  min-height: 100vh;
+}
+
+/* .container-table {
+  width: 100%;
+  justify-content: center;
+}
+
+.container-table table {
+  width: 75%;
+  justify-content: center;
+
+  flex-direction: column;
+}
+
+.container-table table thead {
+  width: 100%;
+}
+
+.container-table tbody tr {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container-table table tr {
+  justify-content: space-between;
+
+  padding: 0.5rem;
+} */
+
+/* .table-stripped thead tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.table-stripped tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}*/
+
+
+.container-btn-delete-all {
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container-btn-delete-all .btn {
+  max-width: 7rem;
+} 

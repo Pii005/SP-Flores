@@ -1,0 +1,54 @@
+
+.green-button {
+    background-color: #1ebb42;
+}
+
+.green-button:hover {
+    background-color: #218838;
+}
+
+.red-button {
+    background-color: #bb1e1e;
+}
+
+.red-button:hover {
+    background-color: #882121;
+}
+
+.editar-button {
+    display: none;
+    background-color: #abad29;
+}
+
+.editar-button:hover {
+    background-color: #868821;
+}
+
+.back-button {
+    display: none;
+    background-color: #292bad;
+}
+
+.editar-button:hover {
+    background-color: #212888;
+}
+
+.table-row {
+    position: relative;
+}
+
+.delete-btn {
+position: absolute;
+right: 10px;
+top: 50%;
+transform: translateY(-50%);
+background-color: red;
+color: white;
+border: none;
+padding: 5px 10px;
+cursor: pointer;
+}
+
+.delete-btn:hover {
+background-color: darkred;
+}

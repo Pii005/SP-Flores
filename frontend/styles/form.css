@@ -1,0 +1,30 @@
+/* form {
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: 300px;
+
+  padding: 1rem;
+  border-radius: 10px;
+  background: whitesmoke;
+}
+
+.form-group {
+  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  max-width: 260px;
+}
+
+.btn {
+  background: red;
+  color: white;
+
+  padding: 0.5rem;
+} */
